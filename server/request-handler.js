@@ -28,12 +28,14 @@ var requestHandler = function(request, response) {
   // debugging help, but you should always be careful about leaving stray
   // console.logs in your code.
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
-
+  if (request.method === 'GET') {
+    console.log('line 32 of request-handler.js');
+  }
   // The outgoing status.
   var statusCode = 200;
 
   // See the note below about CORS headers.
-  var headers = defaultCorsHeaders;
+ // var headers = defaultCorsHeaders;
 
   // Tell the client we are sending them plain text.
   //
@@ -70,4 +72,6 @@ var defaultCorsHeaders = {
   'access-control-allow-headers': 'content-type, accept',
   'access-control-max-age': 10 // Seconds.
 };
+
+module.exports.requestHandler = requestHandler;
 
