@@ -9,7 +9,7 @@ var app = {
   lastMessageId: 0,
   friends: {},
   messages: [],
-
+/*
   init: function() { 
     console.log('app.init called; should be in browser console');
     $.ajax({
@@ -23,7 +23,7 @@ var app = {
       }
     });
   }
-/*
+*/
   init: function() {
     // Get username
     app.username = window.location.search.substr(10);
@@ -247,4 +247,4 @@ var app = {
     $('.spinner img').fadeOut('fast');
     $('form input[type=submit]').attr('disabled', null);
   }
-*/};
+};
