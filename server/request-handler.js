@@ -72,21 +72,32 @@ var requestHandler = function(request, response) {
   
   //moving to the end 
   console.log('Serving request type ' + request.method + ' for url ' + request.url);
-  if (request.method === 'GET') {
-    // console.log('line 32 of request-handler.js');
+  if (request.method === 'GET' && request.url === '/classes/messagesgit') {
+    console.log(request.url);
+// console.log('line 32 of request-handler.js');
     console.log('Get' + typeof request);
     // data['results'].push(database[JSON.stringify(request)].message);
-    data['results'];
-    console.log(data['results']);
-  } else if (request.method === 'POST') {
+  //  data['results'];
+  //  console.log(data['results']);
+  } else if (request.method === 'POST' && request.url === '/classes/messages') {
+
+    var postData = {};
+    postData.username = request._postData.username;
+    postData.message = request._postData.message;
+    postData.roomname = request._postData.roomname || 'lobby';
+    data.results.push(postData);
+
+
     console.log(typeof request, request);
     statusCode = 201;
     database[JSON.stringify(request)] = request._postData;
     console.log(database[JSON.stringify(request)]);
-    data['results'].push(database[JSON.stringify(request)].message);
+//    data['results'].push(database[JSON.stringify(request)].message);
 
     console.log(request._postData.message);
     // database[request] = JSON.parse(request._postData);
+  } else {
+    statusCode = 404;
   }
 
   response.writeHead(statusCode, headers);
